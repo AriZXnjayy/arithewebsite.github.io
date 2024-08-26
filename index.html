@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Yes atau No</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        #container {
+            display: inline-block;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function handleChoice(choice) {
+            const message = document.getElementById('message');
+            const audio = document.getElementById('audio');
+            const video = document.getElementById('video');
+            
+            if (choice === 'yes') {
+                message.innerText = 'Ok Hebat Anda Memilih Yes. Anda dapat mendengarkan sebuah lagu.';
+                audio.style.display = 'block';
+                audio.play();
+                audio.onended = function() {
+                    window.location.href = 'yes.html';
+                };
+            } else {
+                message.innerText = 'Okay, kamu memilih No.';
+                video.style.display = 'block';
+                video.play();
+                video.onended = function() {
+                    
+                };
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <h1>Pilih Yes atau No</h1>
+        <button onclick="handleChoice('yes')">Yes</button>
+        <button onclick="handleChoice('no')">No</button>
+        <p id="message"></p>
+        
+        <!-- Audio yang diputar saat memilih Yes -->
+        <audio id="audio" style="display: none;">
+            <source src="yessong.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <!-- Video yang diputar saat memilih No -->
+        <video id="video" style="display: none;" width="600" height="400">
+            <source src="scare.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</body>
+</html>
